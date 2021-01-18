@@ -9,10 +9,10 @@ class FileOutput extends LogOutput {
   final File file;
   final bool overrideExisting;
   final Encoding encoding;
-  IOSink? _sink;
+  IOSink _sink;
 
-  FileOutput({
-    required this.file,
+  FileOutput(
+    this.file, {
     this.overrideExisting = false,
     this.encoding = utf8,
   });

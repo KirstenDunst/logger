@@ -1,10 +1,17 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-01-18 16:34:19
+ * @Description: 
+ */
 import 'dart:async';
 
 import 'package:logger/src/logger.dart';
 import 'package:logger/src/log_output.dart';
 
 class StreamOutput extends LogOutput {
-  late StreamController<List<String>> _controller;
+  StreamController<List<String>> _controller;
   bool _shouldForward = false;
 
   StreamOutput() {

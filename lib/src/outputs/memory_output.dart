@@ -1,3 +1,10 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-01-18 16:33:07
+ * @Description: 
+ */
 import 'dart:collection';
 
 import 'package:logger/src/logger.dart';
@@ -9,7 +16,7 @@ class MemoryOutput extends LogOutput {
   final int bufferSize;
 
   /// A secondary [LogOutput] to also received events.
-  final LogOutput? secondOutput;
+  final LogOutput secondOutput;
 
   /// The buffer of events.
   final ListQueue<OutputEvent> buffer;

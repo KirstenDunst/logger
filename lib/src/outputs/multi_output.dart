@@ -1,14 +1,21 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-01-18 16:34:11
+ * @Description: 
+ */
 import 'package:logger/src/log_output.dart';
 import 'package:logger/src/logger.dart';
 
 /// Logs simultaneously to multiple [LogOutput] outputs.
 class MultiOutput extends LogOutput {
-  late List<LogOutput> _outputs;
+  List<LogOutput> _outputs;
 
-  MultiOutput(List<LogOutput?>? outputs) {
+  MultiOutput(List<LogOutput> outputs) {
     _outputs = _normalizeOutputs(outputs);
   }
-  List<LogOutput> _normalizeOutputs(List<LogOutput?>? outputs) {
+  List<LogOutput> _normalizeOutputs(List<LogOutput> outputs) {
     final normalizedOutputs = <LogOutput>[];
 
     if (outputs != null) {

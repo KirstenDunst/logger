@@ -1,3 +1,10 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-01-18 16:35:54
+ * @Description: 
+ */
 /// This class handles colorizing of terminal output.
 class AnsiColor {
   /// ANSI Control Sequence Introducer, signals the terminal for new settings.
@@ -6,8 +13,8 @@ class AnsiColor {
   /// Reset all colors and options for current SGRs to terminal defaults.
   static const ansiDefault = '${ansiEsc}0m';
 
-  final int? fg;
-  final int? bg;
+  final int fg;
+  final int bg;
   final bool color;
 
   AnsiColor.none()

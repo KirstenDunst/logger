@@ -1,3 +1,10 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-01-18 16:34:29
+ * @Description: 
+ */
 import 'package:logger/src/logger.dart';
 import 'package:logger/src/log_filter.dart';
 
@@ -10,7 +17,7 @@ class DevelopmentFilter extends LogFilter {
   bool shouldLog(LogEvent event) {
     var shouldLog = false;
     assert(() {
-      if (event.level.index >= level!.index) {
+      if (event.level.index >= level.index) {
         shouldLog = true;
       }
       return true;
