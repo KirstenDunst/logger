@@ -14,7 +14,6 @@ enum Level {
   warning,
   error,
   wtf,
-  nothing,
 }
 
 class LogEvent {
@@ -22,22 +21,21 @@ class LogEvent {
   final dynamic message;
   final dynamic error;
   final StackTrace stackTrace;
+  //附带参数，可自定义使用传递参数
+  final String extraParam;
 
-  LogEvent(this.level, this.message, this.error, this.stackTrace);
+  LogEvent(this.level, this.message,
+      {this.error, this.stackTrace, this.extraParam});
 }
 
 class OutputEvent {
   final Level level;
   final List<String> lines;
+  //附带参数，可自定义使用传递参数
+  final String extraParam;
 
-  OutputEvent(this.level, this.lines);
+  OutputEvent(this.level, this.lines, {this.extraParam});
 }
-
-@Deprecated('Use a custom LogFilter instead')
-typedef LogCallback = void Function(LogEvent event);
-
-@Deprecated('Use a custom LogOutput instead')
-typedef OutputCallback = void Function(OutputEvent event);
 
 /// Use instances of logger to send log messages to the [LogPrinter].
 class Logger {
@@ -71,51 +69,62 @@ class Logger {
   }
 
   /// Log a message at level [Level.verbose].
-  void v(dynamic message, [dynamic error, StackTrace stackTrace]) {
-    log(Level.verbose, message, error, stackTrace);
+  void v(dynamic message,
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+    log(Level.verbose, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.debug].
-  void d(dynamic message, [dynamic error, StackTrace stackTrace]) {
-    log(Level.debug, message, error, stackTrace);
+  void d(dynamic message,
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+    log(Level.debug, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.info].
-  void i(dynamic message, [dynamic error, StackTrace stackTrace]) {
-    log(Level.info, message, error, stackTrace);
+  void i(dynamic message,
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+    log(Level.info, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.warning].
-  void w(dynamic message, [dynamic error, StackTrace stackTrace]) {
-    log(Level.warning, message, error, stackTrace);
+  void w(dynamic message,
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+    log(Level.warning, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.error].
-  void e(dynamic message, [dynamic error, StackTrace stackTrace]) {
-    log(Level.error, message, error, stackTrace);
+  void e(dynamic message,
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+    log(Level.error, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.wtf].
-  void wtf(dynamic message, [dynamic error, StackTrace stackTrace]) {
-    log(Level.wtf, message, error, stackTrace);
+  void wtf(dynamic message,
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+    log(Level.wtf, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message with [level].
   void log(Level level, dynamic message,
-      [dynamic error, StackTrace stackTrace]) {
+      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
     if (!_active) {
       throw ArgumentError('Logger has already been closed.');
     } else if (error != null && error is StackTrace) {
       throw ArgumentError('Error parameter cannot take a StackTrace!');
-    } else if (level == Level.nothing) {
-      throw ArgumentError('Log events cannot have Level.nothing');
-    }
-    var logEvent = LogEvent(level, message, error, stackTrace);
+    } 
+    var logEvent = LogEvent(level, message,
+        error: error, stackTrace: stackTrace, extraParam: extraParam);
     if (_filter.shouldLog(logEvent)) {
       var output = _printer.log(logEvent);
 
       if (output.isNotEmpty) {
-        var outputEvent = OutputEvent(level, output);
+        var outputEvent = OutputEvent(level, output, extraParam: extraParam);
         // Issues with log output should NOT influence
         // the main software behavior.
         try {

@@ -1,3 +1,10 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-01-19 10:59:37
+ * @Description: 
+ */
 import 'package:logger/src/printers/simple_printer.dart';
 import 'package:test/test.dart';
 import 'package:logger/logger.dart';
@@ -8,8 +15,8 @@ void main() {
   var event = LogEvent(
     Level.verbose,
     'some message',
-    'some error',
-    StackTrace.current,
+    error: 'some error',
+    stackTrace: StackTrace.current,
   );
 
   var plainPrinter = SimplePrinter(colors: false, printTime: false);
@@ -53,8 +60,8 @@ void main() {
     var withoutError = LogEvent(
       Level.debug,
       'some message',
-      null,
-      StackTrace.current,
+      error: null,
+      stackTrace: StackTrace.current,
     );
     var outputs = SimplePrinter().log(withoutError);
 
@@ -65,8 +72,8 @@ void main() {
     var withMap = LogEvent(
       Level.debug,
       {'foo': 123},
-      'some error',
-      StackTrace.current,
+      error: 'some error',
+      stackTrace: StackTrace.current,
     );
 
     expect(
@@ -79,8 +86,8 @@ void main() {
     var withIterable = LogEvent(
       Level.debug,
       [1, 2, 3, 4],
-      'some error',
-      StackTrace.current,
+      error: 'some error',
+      stackTrace: StackTrace.current,
     );
 
     expect(
