@@ -22,7 +22,7 @@ class LogEvent {
   final dynamic error;
   final StackTrace stackTrace;
   //附带参数，可自定义使用传递参数
-  final String extraParam;
+  final dynamic extraParam;
 
   LogEvent(this.level, this.message,
       {this.error, this.stackTrace, this.extraParam});
@@ -32,7 +32,7 @@ class OutputEvent {
   final Level level;
   final List<String> lines;
   //附带参数，可自定义使用传递参数
-  final String extraParam;
+  final dynamic extraParam;
 
   OutputEvent(this.level, this.lines, {this.extraParam});
 }
