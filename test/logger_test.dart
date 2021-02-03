@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:test/test.dart';
-import 'package:logger_csx/logger.dart';
+import 'package:logger_csx/logger_csx.dart';
 
 typedef PrinterCallback = List<String> Function(
   Level level,

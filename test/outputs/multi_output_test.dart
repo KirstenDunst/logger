@@ -1,4 +1,4 @@
-import 'package:logger_csx/logger.dart';
+import 'package:logger_csx/logger_csx.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,7 +1,14 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:26:37
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-02-03 11:04:00
+ * @Description: 
+ */
 import 'package:logger_csx/src/printers/prefix_printer.dart';
 import 'package:test/test.dart';
 
-import 'package:logger_csx/logger.dart';
+import 'package:logger_csx/logger_csx.dart';
 
 void main() {
   var debugEvent = LogEvent(Level.debug, 'debug',

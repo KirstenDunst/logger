@@ -2,10 +2,10 @@
  * @Author: Cao Shixin
  * @Date: 2021-01-18 16:26:37
  * @LastEditors: Cao Shixin
- * @LastEditTime: 2021-01-19 10:54:59
+ * @LastEditTime: 2021-02-03 11:03:34
  * @Description: 
  */
-import 'package:logger_csx/logger.dart';
+import 'package:logger_csx/logger_csx.dart';
 
 var logger = Logger(
   printer: PrettyPrinter(),

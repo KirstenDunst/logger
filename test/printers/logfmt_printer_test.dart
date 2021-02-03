@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:logger_csx/logger.dart';
+import 'package:logger_csx/logger_csx.dart';
 
 void main() {
   var printer = LogfmtPrinter();

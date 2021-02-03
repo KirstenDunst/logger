@@ -1,7 +1,14 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-02-03 11:04:08
+ * @Description: 
+ */
 import 'package:test/test.dart';
 
 import 'package:logger_csx/src/printers/hybrid_printer.dart';
-import 'package:logger_csx/logger.dart';
+import 'package:logger_csx/logger_csx.dart';
 
 final realPrinter = SimplePrinter();
 
