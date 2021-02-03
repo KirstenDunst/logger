@@ -5,9 +5,9 @@
  * @LastEditTime: 2021-01-19 10:59:37
  * @Description: 
  */
-import 'package:logger/src/printers/simple_printer.dart';
+import 'package:logger_csx/src/printers/simple_printer.dart';
 import 'package:test/test.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_csx/logger.dart';
 
 const ansiEscapeLiteral = '\x1B';
 

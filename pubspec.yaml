@@ -1,4 +1,4 @@
-name: logger
+name: logger_csx
 description: Small, easy to use and extensible logger which prints beautiful logs.
 version: 0.0.1
 homepage: https://github.com/KirstenDunst/logger

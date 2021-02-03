@@ -5,8 +5,8 @@
  * @LastEditTime: 2021-01-18 16:34:11
  * @Description: 
  */
-import 'package:logger/src/log_output.dart';
-import 'package:logger/src/logger.dart';
+import 'package:logger_csx/src/log_output.dart';
+import 'package:logger_csx/src/logger.dart';
 
 /// Logs simultaneously to multiple [LogOutput] outputs.
 class MultiOutput extends LogOutput {

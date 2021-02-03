@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 
-import 'package:logger/src/printers/hybrid_printer.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_csx/src/printers/hybrid_printer.dart';
+import 'package:logger_csx/logger.dart';
 
 final realPrinter = SimplePrinter();
 

@@ -7,8 +7,8 @@
  */
 import 'dart:collection';
 
-import 'package:logger/src/logger.dart';
-import 'package:logger/src/log_output.dart';
+import 'package:logger_csx/src/logger.dart';
+import 'package:logger_csx/src/log_output.dart';
 
 /// Buffers [OutputEvent]s.
 class MemoryOutput extends LogOutput {

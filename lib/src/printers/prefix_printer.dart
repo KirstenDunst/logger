@@ -5,8 +5,8 @@
  * @LastEditTime: 2021-01-18 16:34:43
  * @Description: 
  */
-import 'package:logger/src/logger.dart';
-import 'package:logger/src/log_printer.dart';
+import 'package:logger_csx/src/logger.dart';
+import 'package:logger_csx/src/log_printer.dart';
 
 /// A decorator for a [LogPrinter] that allows for the prepending of every
 /// line in the log output with a string for the level of that log. For
