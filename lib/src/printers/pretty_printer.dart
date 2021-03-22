@@ -61,7 +61,7 @@ class PrettyPrinter extends LogPrinter {
   static final _browserStackTraceRegex =
       RegExp(r'^(?:package:)?(dart:[^\s]+|[^\s]+)');
 
-  static DateTime _startTime;
+  static DateTime? _startTime;
 
   final int methodCount;
   final int errorMethodCount;
@@ -97,10 +97,10 @@ class PrettyPrinter extends LogPrinter {
   }
 
   @override
-  List<String> log(LogEvent event) {
+  List<String?> log(LogEvent event) {
     var messageStr = stringifyMessage(event.message);
 
-    String stackTraceStr;
+    String? stackTraceStr;
     if (event.stackTrace == null) {
       if (methodCount > 0) {
         stackTraceStr = formatStackTrace(StackTrace.current, methodCount);
@@ -111,7 +111,7 @@ class PrettyPrinter extends LogPrinter {
 
     var errorStr = event.error?.toString();
 
-    String timeStr;
+    String? timeStr;
     if (printTime) {
       timeStr = getTime();
     }
@@ -125,7 +125,7 @@ class PrettyPrinter extends LogPrinter {
     );
   }
 
-  String formatStackTrace(StackTrace stackTrace, int methodCount) {
+  String? formatStackTrace(StackTrace? stackTrace, int methodCount) {
     var lines = stackTrace.toString().split('\n');
     var formatted = <String>[];
     var count = 0;
@@ -154,7 +154,7 @@ class PrettyPrinter extends LogPrinter {
     if (match == null) {
       return false;
     }
-    return match.group(2).startsWith('package:logger_csx');
+    return match.group(2)!.startsWith('package:logger_csx');
   }
 
   bool _discardWebStacktraceLine(String line) {
@@ -162,8 +162,8 @@ class PrettyPrinter extends LogPrinter {
     if (match == null) {
       return false;
     }
-    return match.group(1).startsWith('packages/logger') ||
-        match.group(1).startsWith('dart-sdk/lib');
+    return match.group(1)!.startsWith('packages/logger') ||
+        match.group(1)!.startsWith('dart-sdk/lib');
   }
 
   bool _discardBrowserStacktraceLine(String line) {
@@ -171,8 +171,8 @@ class PrettyPrinter extends LogPrinter {
     if (match == null) {
       return false;
     }
-    return match.group(1).startsWith('package:logger_csx') ||
-        match.group(1).startsWith('dart:');
+    return match.group(1)!.startsWith('package:logger_csx') ||
+        match.group(1)!.startsWith('dart:');
   }
 
   String getTime() {
@@ -192,7 +192,7 @@ class PrettyPrinter extends LogPrinter {
     var min = _twoDigits(now.minute);
     var sec = _twoDigits(now.second);
     var ms = _threeDigits(now.millisecond);
-    var timeSinceStart = now.difference(_startTime).toString();
+    var timeSinceStart = now.difference(_startTime!).toString();
     return '$h:$min:$sec.$ms (+$timeSinceStart)';
   }
 
@@ -205,7 +205,7 @@ class PrettyPrinter extends LogPrinter {
     }
   }
 
-  AnsiColor _getLevelColor(Level level) {
+  AnsiColor? _getLevelColor(Level level) {
     if (colors) {
       return levelColors[level];
     } else {
@@ -216,16 +216,16 @@ class PrettyPrinter extends LogPrinter {
   AnsiColor _getErrorColor(Level level) {
     if (colors) {
       if (level == Level.wtf) {
-        return levelColors[Level.wtf].toBg();
+        return levelColors[Level.wtf]!.toBg();
       } else {
-        return levelColors[Level.error].toBg();
+        return levelColors[Level.error]!.toBg();
       }
     } else {
       return AnsiColor.none();
     }
   }
 
-  String _getEmoji(Level level) {
+  String? _getEmoji(Level level) {
     if (printEmojis) {
       return levelEmojis[level];
     } else {
@@ -233,17 +233,17 @@ class PrettyPrinter extends LogPrinter {
     }
   }
 
-  List<String> _formatAndPrint(
+  List<String?> _formatAndPrint(
     Level level,
     String message,
-    String time,
-    String error,
-    String stacktrace,
+    String? time,
+    String? error,
+    String? stacktrace,
   ) {
     // This code is non trivial and a type annotation here helps understanding.
     // ignore: omit_local_variable_types
-    List<String> buffer = [];
-    var color = _getLevelColor(level);
+    List<String?> buffer = [];
+    var color = _getLevelColor(level)!;
     buffer.add(color(_topBorder));
 
     if (error != null) {

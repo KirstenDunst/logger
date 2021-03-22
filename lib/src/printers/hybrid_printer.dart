@@ -22,7 +22,7 @@ import 'package:logger_csx/src/log_printer.dart';
 /// logs, which will use SimplePrinter().
 class HybridPrinter extends LogPrinter {
   final LogPrinter _realPrinter;
-  var _printerMap;
+  late var _printerMap;
 
   HybridPrinter(this._realPrinter,
       {debug, verbose, wtf, info, warning, error}) {
@@ -37,5 +37,5 @@ class HybridPrinter extends LogPrinter {
   }
 
   @override
-  List<String> log(LogEvent event) => _printerMap[event.level].log(event);
+  List<String>? log(LogEvent event) => _printerMap[event.level].log(event);
 }

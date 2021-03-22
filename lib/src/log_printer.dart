@@ -12,7 +12,7 @@ abstract class LogPrinter {
 
   /// Is called every time a new [LogEvent] is sent and handles printing or
   /// storing the message.
-  List<String> log(LogEvent event);
+  List<String?>? log(LogEvent event);
 
   void destroy() {}
 }

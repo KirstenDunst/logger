@@ -13,7 +13,7 @@ import 'package:logger_csx/logger_csx.dart';
 final realPrinter = SimplePrinter();
 
 class TestLogPrinter extends LogPrinter {
-  LogEvent latestEvent;
+  LogEvent? latestEvent;
   @override
   List<String> log(LogEvent event) {
     latestEvent = event;

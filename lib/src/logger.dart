@@ -20,7 +20,7 @@ class LogEvent {
   final Level level;
   final dynamic message;
   final dynamic error;
-  final StackTrace stackTrace;
+  final StackTrace? stackTrace;
   //附带参数，可自定义使用传递参数
   final dynamic extraParam;
 
@@ -30,7 +30,7 @@ class LogEvent {
 
 class OutputEvent {
   final Level level;
-  final List<String> lines;
+  final List<String?> lines;
   //附带参数，可自定义使用传递参数
   final dynamic extraParam;
 
@@ -55,10 +55,10 @@ class Logger {
   /// defaults: [PrettyPrinter], [DevelopmentFilter] and [ConsoleOutput] will be
   /// used.
   Logger({
-    LogFilter filter,
-    LogPrinter printer,
-    LogOutput output,
-    Level level,
+    LogFilter? filter,
+    LogPrinter? printer,
+    LogOutput? output,
+    Level? level,
   })  : _filter = filter ?? DevelopmentFilter(),
         _printer = printer ?? PrettyPrinter(),
         _output = output ?? ConsoleOutput() {
@@ -70,49 +70,49 @@ class Logger {
 
   /// Log a message at level [Level.verbose].
   void v(dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     log(Level.verbose, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.debug].
   void d(dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     log(Level.debug, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.info].
   void i(dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     log(Level.info, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.warning].
   void w(dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     log(Level.warning, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.error].
   void e(dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     log(Level.error, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message at level [Level.wtf].
   void wtf(dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     log(Level.wtf, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
   }
 
   /// Log a message with [level].
   void log(Level level, dynamic message,
-      {dynamic error, StackTrace stackTrace, dynamic extraParam}) {
+      {dynamic error, StackTrace? stackTrace, dynamic extraParam}) {
     if (!_active) {
       throw ArgumentError('Logger has already been closed.');
     } else if (error != null && error is StackTrace) {
@@ -121,7 +121,7 @@ class Logger {
     var logEvent = LogEvent(level, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
     if (_filter.shouldLog(logEvent)) {
-      var output = _printer.log(logEvent);
+      var output = _printer.log(logEvent)!;
 
       if (output.isNotEmpty) {
         var outputEvent = OutputEvent(level, output, extraParam: extraParam);

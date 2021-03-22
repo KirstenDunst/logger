@@ -40,11 +40,11 @@ class SimplePrinter extends LogPrinter {
     return ['${_labelFor(event.level)} $timeStr $messageStr$errorStr'];
   }
 
-  String _labelFor(Level level) {
+  String? _labelFor(Level level) {
     var prefix = levelPrefixes[level];
     var color = levelColors[level];
 
-    return colors ? color(prefix) : prefix;
+    return colors ? color!(prefix!) : prefix;
   }
 
   String _stringifyMessage(dynamic message) {

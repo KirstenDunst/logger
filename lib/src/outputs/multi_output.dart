@@ -10,12 +10,12 @@ import 'package:logger_csx/src/logger.dart';
 
 /// Logs simultaneously to multiple [LogOutput] outputs.
 class MultiOutput extends LogOutput {
-  List<LogOutput> _outputs;
+  late List<LogOutput> _outputs;
 
-  MultiOutput(List<LogOutput> outputs) {
+  MultiOutput(List<LogOutput?>? outputs) {
     _outputs = _normalizeOutputs(outputs);
   }
-  List<LogOutput> _normalizeOutputs(List<LogOutput> outputs) {
+  List<LogOutput> _normalizeOutputs(List<LogOutput?>? outputs) {
     final normalizedOutputs = <LogOutput>[];
 
     if (outputs != null) {
