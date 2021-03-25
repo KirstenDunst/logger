@@ -103,7 +103,7 @@ class PrettyPrinter extends LogPrinter {
   }
 
   @override
-  List<String?> log(LogEvent event) {
+  List<String> log(LogEvent event) {
     var messageStr = stringifyMessage(event.message);
 
     String? stackTraceStr;
@@ -171,7 +171,7 @@ class PrettyPrinter extends LogPrinter {
     if (match == null) {
       return false;
     }
-    return match.group(1)!.startsWith('packages/logger') ||
+    return match.group(1)!.startsWith('packages/logger_csx') ||
         match.group(1)!.startsWith('dart-sdk/lib');
   }
 
@@ -214,9 +214,9 @@ class PrettyPrinter extends LogPrinter {
     }
   }
 
-  AnsiColor? _getLevelColor(Level level) {
+  AnsiColor _getLevelColor(Level level) {
     if (colors) {
-      return levelColors[level];
+      return levelColors[level]!;
     } else {
       return AnsiColor.none();
     }
@@ -234,15 +234,15 @@ class PrettyPrinter extends LogPrinter {
     }
   }
 
-  String? _getEmoji(Level level) {
+  String _getEmoji(Level level) {
     if (printEmojis) {
-      return levelEmojis[level];
+      return levelEmojis[level]!;
     } else {
       return '';
     }
   }
 
-  List<String?> _formatAndPrint(
+  List<String> _formatAndPrint(
     Level level,
     String message,
     String? time,
@@ -251,8 +251,8 @@ class PrettyPrinter extends LogPrinter {
   ) {
     // This code is non trivial and a type annotation here helps understanding.
     // ignore: omit_local_variable_types
-    List<String?> buffer = [];
-    var color = _getLevelColor(level)!;
+    List<String> buffer = [];
+    var color = _getLevelColor(level);
     buffer.add(color(_topBorder));
 
     if (error != null) {

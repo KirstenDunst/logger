@@ -1,3 +1,10 @@
+/*
+ * @Author: Cao Shixin
+ * @Date: 2021-01-18 16:27:06
+ * @LastEditors: Cao Shixin
+ * @LastEditTime: 2021-03-25 18:07:13
+ * @Description: 
+ */
 import 'dart:convert';
 
 import 'package:logger_csx/src/logger.dart';
@@ -40,11 +47,11 @@ class SimplePrinter extends LogPrinter {
     return ['${_labelFor(event.level)} $timeStr $messageStr$errorStr'];
   }
 
-  String? _labelFor(Level level) {
-    var prefix = levelPrefixes[level];
-    var color = levelColors[level];
+  String _labelFor(Level level) {
+    var prefix = levelPrefixes[level]!;
+    var color = levelColors[level]!;
 
-    return colors ? color!(prefix!) : prefix;
+    return colors ? color(prefix) : prefix;
   }
 
   String _stringifyMessage(dynamic message) {

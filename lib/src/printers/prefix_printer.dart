@@ -2,7 +2,7 @@
  * @Author: Cao Shixin
  * @Date: 2021-01-18 16:27:06
  * @LastEditors: Cao Shixin
- * @LastEditTime: 2021-01-18 16:34:43
+ * @LastEditTime: 2021-03-25 17:59:23
  * @Description: 
  */
 import 'package:logger_csx/src/logger.dart';
@@ -39,7 +39,7 @@ class PrefixPrinter extends LogPrinter {
 
   @override
   List<String> log(LogEvent event) {
-    var realLogs = _realPrinter.log(event)!;
+    var realLogs = _realPrinter.log(event);
     return realLogs.map((s) => '${_prefixMap[event.level]}$s').toList();
   }
 

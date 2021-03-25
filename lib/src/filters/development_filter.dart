@@ -2,7 +2,7 @@
  * @Author: Cao Shixin
  * @Date: 2021-01-18 16:27:06
  * @LastEditors: Cao Shixin
- * @LastEditTime: 2021-01-18 16:34:29
+ * @LastEditTime: 2021-03-25 17:55:18
  * @Description: 
  */
 import 'package:logger_csx/src/logger.dart';
@@ -17,7 +17,7 @@ class DevelopmentFilter extends LogFilter {
   bool shouldLog(LogEvent event) {
     var shouldLog = false;
     assert(() {
-      if (event.level.index >= level.index) {
+      if (event.level.index >= level!.index) {
         shouldLog = true;
       }
       return true;

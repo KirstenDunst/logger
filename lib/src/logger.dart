@@ -26,16 +26,25 @@ class LogEvent {
 
   LogEvent(this.level, this.message,
       {this.error, this.stackTrace, this.extraParam});
+
+  @override
+  String toString() => 'LogEvent($level)';
 }
 
 class OutputEvent {
   final Level level;
-  final List<String?> lines;
+  final List<String> lines;
   //附带参数，可自定义使用传递参数
   final dynamic extraParam;
 
   OutputEvent(this.level, this.lines, {this.extraParam});
 }
+
+@Deprecated('Use a custom LogFilter instead')
+typedef LogCallback = void Function(LogEvent event);
+
+@Deprecated('Use a custom LogOutput instead')
+typedef OutputCallback = void Function(OutputEvent event);
 
 /// Use instances of logger to send log messages to the [LogPrinter].
 class Logger {
@@ -121,7 +130,7 @@ class Logger {
     var logEvent = LogEvent(level, message,
         error: error, stackTrace: stackTrace, extraParam: extraParam);
     if (_filter.shouldLog(logEvent)) {
-      var output = _printer.log(logEvent)!;
+      var output = _printer.log(logEvent);
 
       if (output.isNotEmpty) {
         var outputEvent = OutputEvent(level, output, extraParam: extraParam);

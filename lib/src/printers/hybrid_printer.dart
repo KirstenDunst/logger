@@ -2,7 +2,7 @@
  * @Author: Cao Shixin
  * @Date: 2021-01-18 16:26:37
  * @LastEditors: Cao Shixin
- * @LastEditTime: 2021-02-03 11:03:52
+ * @LastEditTime: 2021-03-25 17:58:20
  * @Description: 
  */
 import 'package:logger_csx/logger_csx.dart';
@@ -37,5 +37,5 @@ class HybridPrinter extends LogPrinter {
   }
 
   @override
-  List<String>? log(LogEvent event) => _printerMap[event.level].log(event);
+  List<String> log(LogEvent event) => _printerMap[event.level].log(event);
 }
